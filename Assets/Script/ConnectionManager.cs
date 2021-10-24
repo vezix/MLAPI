@@ -11,10 +11,13 @@ public class ConnectionManager : MonoBehaviour
     public string ipAddress = "127.0.0.1";
     UNetTransport transport;
 
+    public Camera LobbyCamera;
+
     //Happen on server
     public void Host()
     {
         connectionButtonPanel.SetActive(false);
+        LobbyCamera.gameObject.SetActive(false);
         NetworkManager.Singleton.ConnectionApprovalCallback += ApprovalCheck;
         NetworkManager.Singleton.StartHost(GetRandomSpawn(), Quaternion.identity);
     }
@@ -32,6 +35,7 @@ public class ConnectionManager : MonoBehaviour
         transport = NetworkManager.Singleton.GetComponent<UNetTransport>();
         transport.ConnectAddress = ipAddress;
         connectionButtonPanel.SetActive(false);
+        LobbyCamera.gameObject.SetActive(false);
         NetworkManager.Singleton.NetworkConfig.ConnectionData = System.Text.Encoding.ASCII.GetBytes("Password1234");
         NetworkManager.Singleton.StartClient();
     }
@@ -39,7 +43,7 @@ public class ConnectionManager : MonoBehaviour
     Vector3 GetRandomSpawn()
     {
         float x = Random.Range(-10f, 10f);
-        float y = Random.Range(-10f, 10f);
+        float y = 2f;
         float z = Random.Range(-10f, 10f);
 
         return new Vector3(x, y, z);
