@@ -92,7 +92,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 2699541614218734239}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
@@ -245,6 +245,8 @@ GameObject:
   - component: {fileID: 7636040819007464287}
   - component: {fileID: 5703694118062183612}
   - component: {fileID: 3018941521307272827}
+  - component: {fileID: 8596257036136011797}
+  - component: {fileID: 6456412703275378243}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -284,7 +286,7 @@ CharacterController:
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
+  m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2699541615817244670
 MonoBehaviour:
@@ -383,6 +385,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletTrail: {fileID: 2855725935278739160, guid: bb696f2e6a2c86e4f875e24e9acf7fba, type: 3}
   gunBarrel: {fileID: 8760164065993561153}
+  Bulletdistance: 200
+--- !u!114 &8596257036136011797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2699541615817244657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ce4ff96cc1e2684e8db319125661846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health:
+    m_InternalValue: 100
+--- !u!114 &6456412703275378243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2699541615817244657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c90bb0a9f7cb48341aa0e971abc93359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scripts:
+  - {fileID: 2699541615817244670}
+  - {fileID: 8596257036136011797}
+  - {fileID: 3018941521307272827}
+  - {fileID: 5703694118062183612}
+  deathParticles: {fileID: 6547319113502648633, guid: 692da535aafab7649ad0ac1387b529f4, type: 3}
 --- !u!1 &3136625245200168079
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,7 +510,7 @@ BoxCollider:
   m_GameObject: {fileID: 3136625245200168079}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}

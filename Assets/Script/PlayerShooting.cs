@@ -31,14 +31,26 @@ public class PlayerShooting : NetworkBehaviour
         
     }
 
-    //These run on server, called by clients . Clients => server
+    //These run on server, called by clients . Clients => server,
     [ServerRpc]
     void ShootServerRpc()
     {
+        //do raycast on server to see if we hit an enemy and take damage
+        if (Physics.Raycast(gunBarrel.position,gunBarrel.forward,out RaycastHit hit, Bulletdistance))
+        {
+            //we are hitting something, isit a player?
+            var enemyHealth = hit.transform.GetComponent<PlayerHealth>();
+            if (enemyHealth != null)
+            {
+                enemyHealth.TakeDamage(10);
+            }
+        }
+
+        //to show to All Client the animation.
         ShootClientRpc();
     }
 
-    //Run on server, Sent by Server to client , Server => client
+    //Run on server, Sent by Server to all client , Server => client
     [ClientRpc]
     void ShootClientRpc()
     {
